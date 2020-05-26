@@ -8,6 +8,7 @@
 *.so
 *.dll
 *.dylib
+*.exe
 
 # Qt-es
 object_script.*.Release
@@ -28,6 +29,8 @@ ui_*.h
 *.jsc
 Makefile*
 *build-*
+*build*
+*bin*
 
 # Qt unit tests
 target_wrapper.*
@@ -41,3 +44,7 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
+
+# Project specific folder
+/secret
+/debug

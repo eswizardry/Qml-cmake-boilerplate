@@ -1,15 +1,11 @@
-set(PROJECT "Qml-cmake-boilerplate")
-project(${PROJECT})
-
-#find_package(Qt5QuickCompiler)
+# 3rd party tools
+find_package(Qt5 COMPONENTS core Widgets Qml Quick QuickControls2 REQUIRED)
 include_directories(${Qt5Widgets_INCLUDE_DIRS} ${Qt5Quick_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
 add_definitions(${Qt5Widgets_DEFINITIONS} ${QtQml_DEFINITIONS} ${${Qt5Quick_DEFINITIONS}})
 
-qt5_add_resources(QT_RESOURCES ./resources.qrc)
-qt5_add_resources(QT_RESOURCES ./assets/fonts/fonts.qrc)
-qt5_add_resources(QT_RESOURCES ./qml/qml.qrc)
-qt5_add_resources(QT_RESOURCES ./qml/component/component.qrc)
-qt5_add_resources(QT_RESOURCES ./qml/soup/soup.qrc)
+qt5_add_resources(QT_RESOURCES ../qml/qml.qrc)
+qt5_add_resources(QT_RESOURCES ../assets/assets.qrc)
+qt5_add_resources(QT_RESOURCES ../translations/translations.qrc)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 set(CMAKE_AUTOMOC ON)
@@ -28,12 +24,13 @@ endif()
 #add_library(utils "")
 #add_subdirectory(utility)
 
+
 if(NOT DEFINED HEADERS)
-    file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/cpp/*.h)
+    file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 endif()
 
 if(NOT DEFINED SOURCES)
-    file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/*.cpp)
+    file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 endif()
 
 source_group("Header Files" FILES ${HEADERS})

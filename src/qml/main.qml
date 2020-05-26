@@ -1,11 +1,31 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.5
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 
-ApplicationWindow
-{
-    visible: true
-    width: 640
-    height: 480
-    title: qsTr("Qml-cmake-boilerplate")
+import "component"
+ApplicationWindow {
+    id: appWindow
+    width: 1920
+    height: 1080
+    title: qsTr("Qml CMake Boilerplate")
+
+    Rectangle {
+        id: main
+        anchors.fill: parent
+        color: "#aaa"
+        Column {
+            anchors.centerIn: parent
+            Label {
+                text: qsTr("QML CMAKE Boilerplate!")
+            }
+
+            IconButton {
+                source: "android-exit"
+                height: 60
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                onClicked: Qt.quit()
+            }
+        }
+    }
 }
-
