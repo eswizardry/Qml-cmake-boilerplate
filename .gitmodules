@@ -1,0 +1,9 @@
+[submodule "src/qml/soup/qml-utils"]
+	path = src/qml/soup/qml-utils
+	url = https://github.com/kromain/qml-utils
+[submodule "thirdparty/SortFilterProxyModel"]
+	path = thirdparty/SortFilterProxyModel
+	url = https://github.com/oKcerG/SortFilterProxyModel
+[submodule "thirdparty/spdlog"]
+	path = thirdparty/spdlog
+	url = https://github.com/gabime/spdlog

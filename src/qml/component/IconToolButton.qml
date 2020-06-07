@@ -5,7 +5,6 @@ Button {
     property alias source: icon.source
     property alias iconOpacity: icon.opacity
     property alias iconColor: icon.color
-    //    property alias backgroundColor: background.color
     property alias iconStyle: icon.style
 
     implicitWidth: 50
@@ -15,10 +14,4 @@ Button {
         id: icon
         anchors.fill: parent
     }
-
-    //    background: Rectangle {
-    //        id: background
-    //        anchors.fill: parent
-    //        color: "transparent"
-    //    }
 }

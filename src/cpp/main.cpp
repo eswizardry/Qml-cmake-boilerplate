@@ -2,25 +2,37 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QQuickStyle>
+#include <QDir>
+
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/basic_file_sink.h>
 
 #include "fileio.h"
 #include "platform.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
+    app.setApplicationName("Qml-Cmake-Boilerplate");
+    app.setOrganizationName("esWizardry");
+    app.setOrganizationDomain("eswizardry.com");
+
+    QQuickStyle::setStyle("Material");
 
     QQmlApplicationEngine engine;
-    Platform platform(&engine);
-    FileIO fileio;
+    Platform              platform(&engine);
+    FileIO                fileio;
+
+    spdlog::info("Welcome to spdlog!");
+    spdlog::debug("This message should be displayed..");
 
     // expose C++ classes to QML
     engine.rootContext()->setContextProperty("__fileio", &fileio);
     engine.rootContext()->setContextProperty("__platform", &platform);
 
     // load main file
-    engine.load(QUrl(QLatin1String("qrc:/qml/loader.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qml/loader.qml")));
 
     // set debug mode as QML property
 #ifdef DEBUG

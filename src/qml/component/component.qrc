@@ -4,5 +4,6 @@
         <file>ionicons.js</file>
         <file>IconButton.qml</file>
         <file>qmldir</file>
+        <file>IconToolButton.qml</file>
     </qresource>
 </RCC>

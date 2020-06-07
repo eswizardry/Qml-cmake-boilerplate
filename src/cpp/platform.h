@@ -9,7 +9,8 @@
 #include <QtAndroidExtras>
 #endif
 
-class Platform : public QObject {
+class Platform : public QObject
+{
     Q_OBJECT
 
 public slots:
@@ -45,10 +46,7 @@ public slots:
     }
 
 public:
-    Platform(QQmlApplicationEngine* engine)
-        : m_engine(engine)
-    {
-    }
+    Platform(QQmlApplicationEngine *engine) : m_engine(engine) {}
 
 private:
     QPointer<QQmlApplicationEngine> m_engine;

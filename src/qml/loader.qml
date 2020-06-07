@@ -7,7 +7,13 @@ import Qt.labs.settings 1.0
 
 import "../config.js" as Config
 
-Item {
+ApplicationWindow {
+    id: appWindow
+    width: 640
+    height: 480
+    visible: true
+    title: qsTr("Qml CMake Boilerplate")
+
     // this is set from main.cpp
     property bool _DEBUG_MODE
     // main signal for opening module
@@ -16,8 +22,8 @@ Item {
     property bool _landscape: Screen.orientation === Qt.LandscapeOrientation
 
     function setOrientationListener(listeners) {
-        if(listeners === undefined)
-            listeners = Qt.LandscapeOrientation  | Qt.PortraitOrientation
+        if (listeners === undefined)
+            listeners = Qt.LandscapeOrientation | Qt.PortraitOrientation
 
         Screen.orientationUpdateMask = listeners
     }
@@ -32,7 +38,7 @@ Item {
         if (_DEBUG_MODE)
             console.log("DEBUG MODE")
 
-        console.log("config:", JSON.stringify(Config, null, 4))
+        //        console.log("config:", JSON.stringify(Config, null, 4))
     }
 
     Settings {
@@ -40,22 +46,30 @@ Item {
     }
 
     // webfont icons | they have to be loaded before rest of qml
-    FontLoader { source: "/fonts/Roboto-Regular.ttf" }
-    FontLoader { source: "/fonts/Roboto-Light.ttf" }
-    FontLoader { source: "/fonts/ionicons.ttf" }
+    FontLoader {
+        source: "/fonts/Roboto-Regular.ttf"
+    }
+    FontLoader {
+        source: "/fonts/Roboto-Light.ttf"
+    }
+    FontLoader {
+        source: "/fonts/ionicons.ttf"
+    }
 
     // main application content
     // in debug mode fetched from http, in production, builtin version is used
     Loader {
         id: loader
-        source: _DEBUG_MODE ? "%1/qml/Main.qml".arg(Config.api.url) : "qrc:/qml/Main.qml"
+        source: _DEBUG_MODE ? "%1/qml/main.qml".arg(
+                                  Config.api.url) : "qrc:/qml/main.qml"
         anchors.fill: parent
         asynchronous: false
         onLoaded: item.visible = true
 
         function reload() {
             if (loader.status === Loader.Loading)
-                return console.log("Ignoring reload request, reload in progress")
+                return console.log(
+                            "Ignoring reload request, reload in progress")
 
             console.log("application reload")
 
@@ -76,17 +90,16 @@ Item {
         url: Config.debug.wsurl
         active: _DEBUG_MODE
         onStatusChanged: {
-            if(status === WebSocket.Error)
+            if (status === WebSocket.Error)
                 console.log("WebSocker error:", errorString)
         }
         onTextMessageReceived: {
             console.log("WebSocket message:", message)
             var msg = JSON.parse(message)
-            if(msg.action === "reload")
+            if (msg.action === "reload")
                 loader.reload()
         }
     } // WebSocket
-
     Label {
         id: errorMessage
         color: "white"
