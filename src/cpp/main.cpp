@@ -36,7 +36,8 @@ int main(int argc, char *argv[])
 
     // set debug mode as QML property
 #ifdef DEBUG
-    engine.rootObjects().first()->setProperty("_DEBUG_MODE", true);
+    auto rootObect = engine.rootObjects();
+    rootObect.first()->setProperty("_DEBUG_MODE", true);
 #else
     engine.rootObjects().first()->setProperty("_DEBUG_MODE", false);
 #endif

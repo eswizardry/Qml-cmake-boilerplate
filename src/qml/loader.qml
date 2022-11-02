@@ -89,7 +89,7 @@ ApplicationWindow {
         id: wsDebugServer
         url: Config.debug.wsurl
         active: _DEBUG_MODE
-        onStatusChanged: {
+        onStatusChanged: (status) => {
             if (status === WebSocket.Error)
                 console.log("WebSocker error:", errorString)
         }

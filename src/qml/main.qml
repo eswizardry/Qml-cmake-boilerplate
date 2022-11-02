@@ -35,7 +35,7 @@ Rectangle {
     Column {
         anchors.centerIn: parent
         Label {
-            text: qsTr("Qml-cmake-boilerplate")
+            text: qsTr("Qml-cmake-boilerplate.")
         }
 
         IconButton {

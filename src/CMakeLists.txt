@@ -11,7 +11,7 @@ if (WIN32)
       # do MSVC specific things
     else()
         set(LINK_FLAGS -Wl, -subsystem, windows) # Control availability of a console
-        set(CMAKE_CXX_FLAGS "-Wall -Werror -std=c++17 -fstrict-aliasing -pedantic-errors -pedantic -Wno-deprecated-declarations -Wno-unused-variable")
+        set(CMAKE_CXX_FLAGS "-Wall -Werror -std=c++17 -fstrict-aliasing -pedantic-errors -pedantic -Wno-deprecated-declarations -Wno-unused-variable -static-libstdc++") # https://stackoverflow.com/questions/69773877/getting-throw-bad-array-new-lengthv-when-trying-to-use-stdvectorpush-back
     endif()
 elseif(UNIX)
     if (ANDROID)
@@ -24,19 +24,19 @@ endif()
 
 
 
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Widgets Qml Quick QuickControls2 REQUIRED)
 
-find_package(Qt5 COMPONENTS core Widgets Qml Quick QuickControls2 REQUIRED)
-
-include_directories(${Qt5Widgets_INCLUDE_DIRS} ${Qt5Quick_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
-add_definitions(${Qt5Widgets_DEFINITIONS} ${QtQml_DEFINITIONS} ${${Qt5Quick_DEFINITIONS}})
+include_directories(${QtWidgets_INCLUDE_DIRS} ${QtQuick_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
+add_definitions(${QtWidgets_DEFINITIONS} ${QtQml_DEFINITIONS} ${${QtQuick_DEFINITIONS}})
 
 #target_include_directories(spdlog PUBLIC "../thirdparty/spdlog/include/spdlog/")
 
-qt5_add_resources(QT_RESOURCES ./resources.qrc)
-qt5_add_resources(QT_RESOURCES ./assets/fonts/fonts.qrc)
-qt5_add_resources(QT_RESOURCES ./qml/qml.qrc)
-qt5_add_resources(QT_RESOURCES ./qml/component/component.qrc)
-qt5_add_resources(QT_RESOURCES ./qml/soup/soup.qrc)
+qt_add_resources(QT_RESOURCES ./resources.qrc)
+qt_add_resources(QT_RESOURCES ./assets/fonts/fonts.qrc)
+qt_add_resources(QT_RESOURCES ./qml/qml.qrc)
+qt_add_resources(QT_RESOURCES ./qml/component/component.qrc)
+qt_add_resources(QT_RESOURCES ./qml/soup/soup.qrc)
 
 # Directory with the target source
 #add_library(utils "")
@@ -66,12 +66,12 @@ target_include_directories(${PROJECT_NAME}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR
 target_link_libraries(${PROJECT_NAME}_lib PRIVATE
     spdlog
     $<TARGET_OBJECTS:SortFilterProxyModel>
-    Qt5::Core
-    Qt5::Quick
-    Qt5::Widgets
-    Qt5::Qml
-    Qt5::Quick
-    Qt5::QuickControls2
+    Qt::Core
+    Qt::Quick
+    Qt::Widgets
+    Qt::Qml
+    Qt::Quick
+    Qt::QuickControls2
     )
 
 add_executable(${PROJECT_NAME} ${QT_RESOURCES} ${ICON_FILE})
