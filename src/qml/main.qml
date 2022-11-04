@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.12
 
 import SortFilterProxyModel 0.2
 import "component"
-import "soup"
+import "../thirdparty"
 
 Rectangle {
     id: main

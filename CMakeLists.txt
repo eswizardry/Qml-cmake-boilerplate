@@ -10,8 +10,8 @@ add_subdirectory(src)
 add_subdirectory(test)
 add_subdirectory(src/cpp/platform)
 
-add_subdirectory(thirdparty/catch)
-add_subdirectory(thirdparty/trompeloeil)
-add_subdirectory(thirdparty/spdlog)
-add_subdirectory(thirdparty/SortFilterProxyModel)
+add_subdirectory(src/thirdparty/catch)
+add_subdirectory(src/thirdparty/trompeloeil)
+add_subdirectory(src/thirdparty/spdlog)
+add_subdirectory(src/thirdparty/SortFilterProxyModel)
 

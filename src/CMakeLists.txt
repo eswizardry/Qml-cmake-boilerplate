@@ -36,7 +36,7 @@ qt_add_resources(QT_RESOURCES ./resources.qrc)
 qt_add_resources(QT_RESOURCES ./assets/fonts/fonts.qrc)
 qt_add_resources(QT_RESOURCES ./qml/qml.qrc)
 qt_add_resources(QT_RESOURCES ./qml/component/component.qrc)
-qt_add_resources(QT_RESOURCES ./qml/soup/soup.qrc)
+qt_add_resources(QT_RESOURCES ./thirdparty/thirdparty.qrc)
 
 # Directory with the target source
 #add_library(utils "")
@@ -54,7 +54,7 @@ if (CMAKE_BUILD_TYPE STREQUAL Debug)
 
 endif()
 
-set(LIB_INCLUDE_DIR "./cpp/" "../thirdparty/spdlog/include/spdlog/")
+set(LIB_INCLUDE_DIR "cpp/" "thirdparty/spdlog/include/")
 
 # All sources that also need to be tested in unit tests go into a static library
 add_library(${PROJECT_NAME}_lib STATIC ${HEADERS} ${SOURCES} )
