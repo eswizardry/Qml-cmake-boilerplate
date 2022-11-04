@@ -7,8 +7,8 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
 
-#include "fileio.h"
-#include "platform.h"
+#include <platform/fileio.h>
+#include <platform/platform.h>
 
 int main(int argc, char *argv[])
 {

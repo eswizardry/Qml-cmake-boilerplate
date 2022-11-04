@@ -8,8 +8,10 @@ enable_testing()
 
 add_subdirectory(src)
 add_subdirectory(test)
+add_subdirectory(src/cpp/platform)
 
 add_subdirectory(thirdparty/catch)
 add_subdirectory(thirdparty/trompeloeil)
 add_subdirectory(thirdparty/spdlog)
 add_subdirectory(thirdparty/SortFilterProxyModel)
+

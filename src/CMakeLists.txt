@@ -54,18 +54,16 @@ if (CMAKE_BUILD_TYPE STREQUAL Debug)
 
 endif()
 
-set(LIB_INCLUDE_DIR "../thirdparty/spdlog/include/spdlog/")
-
-source_group("Header Files" FILES ${HEADERS})
-source_group("Source Files" FILES ${SOURCES})
+set(LIB_INCLUDE_DIR "./cpp/" "../thirdparty/spdlog/include/spdlog/")
 
 # All sources that also need to be tested in unit tests go into a static library
-add_library(${PROJECT_NAME}_lib STATIC ${HEADERS} ${SOURCES})
+add_library(${PROJECT_NAME}_lib STATIC ${HEADERS} ${SOURCES} )
 target_compile_definitions(${PROJECT_NAME}_lib PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:DEBUG>)
 target_include_directories(${PROJECT_NAME}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${LIB_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME}_lib PRIVATE
+target_link_libraries(${PROJECT_NAME}_lib PRIVATE            
     spdlog
     $<TARGET_OBJECTS:SortFilterProxyModel>
+    platform
     Qt::Core
     Qt::Quick
     Qt::Widgets
